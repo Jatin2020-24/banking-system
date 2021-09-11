@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -27,7 +27,26 @@ def home():
 @app.route("/transfer")
 def transfer_details():
     data = Customer.query.filter_by().all()
+
     return render_template('transfer.html', data=data)
+
+
+@app.route("/user")
+def user_page():
+    data = Customer.query.filter_by().all()
+
+    return render_template('user.html', data=data)
+
+
+@app.route("/transaction", methods=['GET', 'POST'])
+def transaction(debit):
+    if request.method == 'POST':
+        debit = request.form.get('debit')
+        credit = request.form.get('credit')
+        amount = request.form.get('amount')
+
+        data = Customer.query.filter_by(debit=debit).first()
+        data1 = Customer.query.filter_by(credit=credit).first()
 
 
 # if __name__ == '__main__':
