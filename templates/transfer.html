@@ -1,28 +1,37 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <table class="table tableSize">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Sno</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Current Balance</th>
-                <th scope="col">Transaction</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for customer in data %}
-            <tr>
-                <th scope="row">{{customer.sno}}</th>
-                <td>{{customer.first_name}}</td>
-                <td>{{customer.last_name}}</td>
-                <td>{{customer.email}}</td>
-                <td>{{customer.current_balance}}</td>
-                <td style="cursor: pointer;"><a href="/user">Transfer</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div>
+    <h2>Name: Jatin Jain</h2>
+    <h4>Current Balance: {{jatin.current_balance}}</h4>
+</div>
+<form action="\user">
+    <div>
+        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send Money</button>
+        <!-- <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Submit</button> -->
+    </div>
+</form>
+
+<table class="table tableSize">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Current Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in data %}
+        <tr>
+            <th scope="row">{{customer.sno}}</th>
+            <td>{{customer.first_name}}</td>
+            <td>{{customer.last_name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.current_balance}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

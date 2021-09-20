@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -19,35 +19,45 @@ class Customer(db.Model):
     current_balance = db.Column(db.Integer, nullable=False)
 
 
+class Transfer(db.Model):
+    sno = db.Column(db.Integer, primary_key=True)
+    sender_name = db.Column(db.String, nullable=False)
+    receiver_name = db.Column(db.String, nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+
+
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
-@app.route("/transfer")
+@app.route("/transfer", methods=['GET'])
 def transfer_details():
     data = Customer.query.filter_by().all()
+    jatin = Customer.query.filter_by(sno='1').first()
 
-    return render_template('transfer.html', data=data)
+    return render_template('index.html', data=data, jatin=jatin)
 
 
-@app.route("/user")
+@app.route("/user", methods=['GET', 'POST'])
 def user_page():
-    data = Customer.query.filter_by().all()
-
-    return render_template('user.html', data=data)
-
-
-@app.route("/transaction", methods=['GET', 'POST'])
-def transaction(debit):
     if request.method == 'POST':
-        debit = request.form.get('debit')
-        credit = request.form.get('credit')
+        receiver = 0
+        amount = 0
+        receiver = request.form.get('receiver')
+        jj = receiver
         amount = request.form.get('amount')
+        data = Customer.query.filter_by(email=jj).first()
+        pro = Customer.query.filter_by(sno='1').first()
+        data.current_balance += int(amount)
+        pro.current_balance -= int(amount)
 
-        data = Customer.query.filter_by(debit=debit).first()
-        data1 = Customer.query.filter_by(credit=credit).first()
+        transfer = Transfer(sender_name=(pro.first_name + " " + pro.last_name),
+                            receiver_name=(data.first_name + " " + data.last_name), amount=int(amount))
+        db.session.add(transfer)
+        db.session.commit()
+        return redirect('/transfer')
+    return render_template('user.html')
 
 
-# if __name__ == '__main__':
 app.run(debug=True)

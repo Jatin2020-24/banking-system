@@ -69,18 +69,9 @@
 
 .bg-img{
   /* background-image: url('transfer.jpg'); */
-  background-color: orange;
+  background-color: white;
   padding-bottom: 1000px;
   mix-blend-mode: darken;
-}
-
-
-/* Transfer Table */
-
-.tableSize{
-  margin-left: 130px;
-  margin-top: 300px;
-  width: 80%;
 }
 
 /*  */
