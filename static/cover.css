@@ -67,6 +67,51 @@
   border-bottom-color: #fff;
 }
 
+
+
+/* Navbar in layout.html starts */
+.navbar{
+  display: flex;
+  /* justify-content: right; */
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  height: 70px;
+}
+
+.nav-list{
+  display: flex;
+  justify-content: center;
+  justify-content: right;
+}
+
+.nav-list li{
+  list-style: none;
+  padding: 20px;
+}
+
+.nav-list li a:hover{
+  color: grey;
+}
+
+.nav-list li a{
+  text-decoration: none;
+  color: white;
+}
+.nav-top{
+  justify-content: left;
+}
+
+.background{
+  background: rgba(0, 0, 0, 0.7);
+  /* background-color: green; */
+  background-size: cover;
+  background-blend-mode: darken;
+}
+/* Navbar in layout.html ends */
+
+
+
 .bg-img{
   /* background-image: url('transfer.jpg'); */
   background-color: white;
@@ -83,6 +128,15 @@
   margin-bottom: 120px;
 }
 
-.debit-select{
-  margin-bottom: 20px;
+/* Footer Starts*/
+.text-footer{
+  display: flex;
+  color: white;
+  height: 6.5vh;
+  width: 30%;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  font-size: 18px;
 }
+/* Footer Ends */

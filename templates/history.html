@@ -2,15 +2,8 @@
 {% block body %}
 
 <div>
-    <h2 style="margin-top: 20px; margin-bottom: 20px;">Name: Jatin Jain</h2>
-    <h4 style="margin-bottom: 10px;">Current Balance: {{jatin.current_balance}}</h4>
+    <h3 style="margin-top: 40px;">Transaction History</h3>
 </div>
-<form action="\user">
-    <div>
-        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Fund Transfer</button>
-        <!-- <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Submit</button> -->
-    </div>
-</form>
 
 	<div class="limiter">
 		<div class="container-table100">
@@ -21,25 +14,26 @@
 							<thead>
 								<tr class="row100 head">
 									<th class="cell100 column1">Sno</th>
-									<th class="cell100 column2">First Name</th>
-									<th class="cell100 column3">Last Name</th>
-									<th class="cell100 column4">Email</th>
-									<th class="cell100 column5">Current Balance</th>
+									<th class="cell100 column2">Sender Name</th>
+									<th class="cell100 column3">Receiver Name</th>
+									<th class="cell100 column4">Amount</th>
+									<th class="cell100 column5">Date & Time</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 
-					<div class="table100-body js-pscroll">
+					<div style="margin-bottom: 96px;" class="table100-body js-pscroll">
 						<table>
 							<tbody>
-								{% for customer in data %}
+								{% for customer in history %}
 								<tr class="row100 body">
 									<td class="cell100 column1">{{customer.sno}}</td>
-									<td class="cell100 column2">{{customer.first_name}}</td>
-									<td class="cell100 column3">{{customer.last_name}}</td>
-									<td class="cell100 column4">{{customer.email}}</td>
-									<td class="cell100 column5">{{customer.current_balance}}</td>
+									<td class="cell100 column2">{{customer.sender_name}}</td>
+									<td class="cell100 column3">{{customer.receiver_name}}</td>
+                                    <!-- <td class="cell100 column4">{{customer.email}}</td> -->
+									<td class="cell100 column4">{{customer.amount}}</td>
+									<td class="cell100 column5">{{customer.date}}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -73,12 +67,4 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{{url_for('static', filename='table/js/main.js')}}"></script>
-
-	<script>
-		document.getElementById('submitButton').addEventListener('click', function(e){
-			window.location="https://www.google.co.in";
-		})
-		console.log('Hello Jatin Welcome to Apna Bank!!');
-	</script>
-	
 {% endblock %}
